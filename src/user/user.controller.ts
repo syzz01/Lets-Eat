@@ -37,9 +37,5 @@ export class UserController {
   async remove(@Param('id') id: string){
     return this.userService.remove(id);
   }
-  // @Delete(':id')
-  // async remove(@Param('id') id: string) {
-  //   return this.catsService.remove(id);
-  // }
 
 }

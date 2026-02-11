@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
+const user_organization_dto_1 = require("./user-organization.dto");
+const class_transformer_1 = require("class-transformer");
 class CreateUserDto {
     userNo;
     fullName;
@@ -22,6 +24,7 @@ class CreateUserDto {
     contact;
     address;
     isActive;
+    organization;
 }
 exports.CreateUserDto = CreateUserDto;
 __decorate([
@@ -69,4 +72,10 @@ __decorate([
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "isActive", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: () => [user_organization_dto_1.UserOrganizationDto] }),
+    (0, class_validator_1.ValidateNested)(),
+    (0, class_transformer_1.Type)(() => user_organization_dto_1.UserOrganizationDto),
+    __metadata("design:type", Array)
+], CreateUserDto.prototype, "organization", void 0);
 //# sourceMappingURL=create-user.dto.js.map

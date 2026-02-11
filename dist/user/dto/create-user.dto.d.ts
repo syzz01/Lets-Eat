@@ -1,3 +1,4 @@
+import { UserOrganizationDto } from './user-organization.dto';
 export declare class CreateUserDto {
     userNo: string;
     fullName: string;
@@ -8,4 +9,5 @@ export declare class CreateUserDto {
     contact: string;
     address: string;
     isActive: boolean;
+    organization: UserOrganizationDto[];
 }

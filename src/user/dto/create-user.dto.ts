@@ -5,7 +5,10 @@ import {
   IsEmail,
   IsBoolean,
   IsDateString,
+  ValidateNested,
 } from 'class-validator';
+import { UserOrganizationDto } from './user-organization.dto';
+import { Type } from 'class-transformer';
 
 export class CreateUserDto {
   @ApiProperty({ example: 'A001' })
@@ -43,4 +46,10 @@ export class CreateUserDto {
   @ApiProperty({ example: true })
   @IsBoolean()
   isActive: boolean;
+
+  @ApiProperty({ type: () => [UserOrganizationDto] })
+  @ValidateNested()
+  @Type(() => UserOrganizationDto)
+  organization: UserOrganizationDto[];
+  
 }

@@ -13,6 +13,7 @@ const config_1 = require("@nestjs/config");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const user_module_1 = require("./user/user.module");
+const organization_module_1 = require("./organization/organization.module");
 const cats_module_1 = require("./cats/cats.module");
 let AppModule = class AppModule {
 };
@@ -31,6 +32,7 @@ exports.AppModule = AppModule = __decorate([
                 }),
             }),
             user_module_1.UserModule,
+            organization_module_1.OrganizationModule,
             cats_module_1.CatsModule,
         ],
         controllers: [app_controller_1.AppController],

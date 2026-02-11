@@ -9,67 +9,63 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchema = exports.User = void 0;
+exports.OrganizationSchema = exports.Organization = exports.BranchSchema = exports.Branch = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-const user_organization_schema_1 = require("./user-organization.schema");
-let User = class User {
-    userNo;
-    fullName;
-    shortName;
-    dateOfBirth;
-    roles;
-    email;
-    contact;
+let Branch = class Branch {
+    branchNo;
+    branchName;
     address;
-    isActive;
-    organization;
+    isHq;
 };
-exports.User = User;
+exports.Branch = Branch;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "userNo", void 0);
+], Branch.prototype, "branchNo", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "fullName", void 0);
+], Branch.prototype, "branchName", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "shortName", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Date)
-], User.prototype, "dateOfBirth", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], User.prototype, "roles", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], User.prototype, "contact", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], User.prototype, "address", void 0);
+], Branch.prototype, "address", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
-], User.prototype, "isActive", void 0);
+], Branch.prototype, "isHq", void 0);
+exports.Branch = Branch = __decorate([
+    (0, mongoose_1.Schema)({ versionKey: false })
+], Branch);
+exports.BranchSchema = mongoose_1.SchemaFactory.createForClass(Branch);
+let Organization = class Organization {
+    organizationId;
+    organizationNo;
+    organizationName;
+    branch;
+};
+exports.Organization = Organization;
 __decorate([
-    (0, mongoose_1.Prop)({ type: [user_organization_schema_1.OrganizationSchema] }),
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Organization.prototype, "organizationId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Organization.prototype, "organizationNo", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Organization.prototype, "organizationName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [exports.BranchSchema], default: [] }),
     __metadata("design:type", Array)
-], User.prototype, "organization", void 0);
-exports.User = User = __decorate([
+], Organization.prototype, "branch", void 0);
+exports.Organization = Organization = __decorate([
     (0, mongoose_1.Schema)({
-        collection: 'UserCollection',
+        collection: 'OrganizationCollection',
         versionKey: false
     })
-], User);
-exports.UserSchema = mongoose_1.SchemaFactory.createForClass(User);
-//# sourceMappingURL=user.schema.js.map
+], Organization);
+exports.OrganizationSchema = mongoose_1.SchemaFactory.createForClass(Organization);
+//# sourceMappingURL=organization.schema.js.map

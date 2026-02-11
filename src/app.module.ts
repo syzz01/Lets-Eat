@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { OrganizationModule } from './organization/organization.module';
 import { CatsModule } from './cats/cats.module';
 
 @Module({
@@ -23,6 +24,7 @@ import { CatsModule } from './cats/cats.module';
     }),
 
     UserModule,
+    OrganizationModule,
     CatsModule,
   ],
   controllers: [AppController],
