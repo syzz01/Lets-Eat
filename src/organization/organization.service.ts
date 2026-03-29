@@ -1,11 +1,8 @@
 // /user/user.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Organization, OrganizationDocument } from '../schemas/organization.schema';
-// import { CreateUserDto } from './dto/create-user.dto';
-// import { FilterUserDto } from './dto/filter-user.dto';
-// import { UpdateUserDto } from './dto/update-user.dto';
 import { OrganizationDto } from './dto/organization.dto';
 import { FilterOrganizationDto } from './dto/filter-organization.dto';
 
@@ -35,6 +32,15 @@ export class OrganizationService {
             }
             else if (key === 'branchName') {
                     query.branch = {$elemMatch: {branchName: { $regex: value, $options: 'i' }}};
+            }
+            else if (key === 'branchId') {
+                if (Types.ObjectId.isValid(value)) {
+                    query.branch = {
+                        $elemMatch: {
+                            _id: new Types.ObjectId(value)
+                        }
+                    };
+                }
             }
             else {
                 query[key] = value;

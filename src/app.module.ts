@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { OrganizationModule } from './organization/organization.module';
 import { CatsModule } from './cats/cats.module';
+import { ItemModule } from './item/item.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CatsModule } from './cats/cats.module';
 
     UserModule,
     OrganizationModule,
+    ItemModule,
     CatsModule,
   ],
   controllers: [AppController],

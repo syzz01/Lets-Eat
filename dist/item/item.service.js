@@ -12,23 +12,22 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrganizationService = void 0;
+exports.ItemService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const organization_schema_1 = require("../schemas/organization.schema");
-let OrganizationService = class OrganizationService {
-    organizationModel;
-    constructor(organizationModel) {
-        this.organizationModel = organizationModel;
+const item_schema_1 = require("../schemas/item.schema");
+let ItemService = class ItemService {
+    itemModel;
+    constructor(itemModel) {
+        this.itemModel = itemModel;
     }
-    async create(organizationDto) {
+    async create(itemDto) {
         try {
-            const createdOrganization = new this.organizationModel(organizationDto);
-            return await createdOrganization.save();
+            const createItem = new this.itemModel(itemDto);
+            return await createItem.save();
         }
         catch (error) {
-            console.error('CREATE USER ERROR:', error);
             throw error;
         }
     }
@@ -37,15 +36,21 @@ let OrganizationService = class OrganizationService {
         Object.entries(filters).forEach(([key, value]) => {
             if (value === undefined)
                 return;
-            if (key === 'organizationName') {
-                query.organizationName = { $regex: value, $options: 'i' };
+            if (key === 'itemName') {
+                query.itemName = { $regex: value, $options: 'i' };
             }
-            else if (key === 'branchName') {
-                query.branch = { $elemMatch: { branchName: { $regex: value, $options: 'i' } } };
+            else if (key === 'organizationId') {
+                if (mongoose_2.Types.ObjectId.isValid(value)) {
+                    query.organization = {
+                        $elemMatch: {
+                            _id: new mongoose_2.Types.ObjectId(value)
+                        }
+                    };
+                }
             }
             else if (key === 'branchId') {
                 if (mongoose_2.Types.ObjectId.isValid(value)) {
-                    query.branch = {
+                    query.organization.branch = {
                         $elemMatch: {
                             _id: new mongoose_2.Types.ObjectId(value)
                         }
@@ -56,34 +61,34 @@ let OrganizationService = class OrganizationService {
                 query[key] = value;
             }
         });
-        return this.organizationModel.find(query).exec();
+        return this.itemModel.find(query).exec();
     }
     async findOne(id) {
-        const organization = await this.organizationModel.findById(id).exec();
-        if (!organization) {
+        const item = await this.itemModel.findById(id).exec();
+        if (!item) {
             throw new common_1.NotFoundException('Organization not found');
         }
-        return organization;
+        return item;
     }
-    async update(id, organizationDto) {
-        const updateOrganization = await this.organizationModel.findByIdAndUpdate(id, organizationDto, { new: true }).exec();
-        if (!updateOrganization) {
-            throw new common_1.NotFoundException('Organization Not Found');
+    async update(id, itemDto) {
+        const updateItem = await this.itemModel.findByIdAndUpdate(id, itemDto, { new: true }).exec();
+        if (!updateItem) {
+            throw new common_1.NotFoundException('Item Not Found');
         }
-        return updateOrganization;
+        return updateItem;
     }
-    async remove(id) {
-        const deleteOrganization = await this.organizationModel.findByIdAndDelete(id).exec();
-        if (!deleteOrganization) {
-            throw new common_1.NotFoundException('Organization Not Found');
+    async delete(id) {
+        const deleteItem = await this.itemModel.findByIdAndDelete(id).exec();
+        if (!deleteItem) {
+            throw new common_1.NotFoundException('Item Not Found');
         }
-        return { _id: deleteOrganization._id.toString() };
+        return { _id: deleteItem._id.toString() };
     }
 };
-exports.OrganizationService = OrganizationService;
-exports.OrganizationService = OrganizationService = __decorate([
+exports.ItemService = ItemService;
+exports.ItemService = ItemService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(organization_schema_1.Organization.name)),
+    __param(0, (0, mongoose_1.InjectModel)(item_schema_1.Item.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
-], OrganizationService);
-//# sourceMappingURL=organization.service.js.map
+], ItemService);
+//# sourceMappingURL=item.service.js.map

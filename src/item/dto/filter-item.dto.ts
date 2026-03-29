@@ -1,18 +1,23 @@
-// filter-organization.dto.ts
+// filter-item.dto.ts
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional, IsString, IsInt } from 'class-validator';
 import { Type } from 'class-transformer';
 
-export class FilterOrganizationDto {
+export class FilterItemDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  organizationNo?: string;
+  itemNo?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  organizationName?: string;
+  itemName?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  organizationId?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -22,11 +27,6 @@ export class FilterOrganizationDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  branchNo?: string;
-
-  @ApiPropertyOptional()
-  @IsOptional()
-  @IsString()
-  branchName?: string;
+  isActive?: boolean;
 
 }

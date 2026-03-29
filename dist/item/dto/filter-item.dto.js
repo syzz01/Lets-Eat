@@ -9,45 +9,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FilterOrganizationDto = void 0;
+exports.FilterItemDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class FilterOrganizationDto {
-    organizationNo;
-    organizationName;
+class FilterItemDto {
+    itemNo;
+    itemName;
+    organizationId;
     branchId;
-    branchNo;
-    branchName;
+    isActive;
 }
-exports.FilterOrganizationDto = FilterOrganizationDto;
+exports.FilterItemDto = FilterItemDto;
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], FilterOrganizationDto.prototype, "organizationNo", void 0);
+], FilterItemDto.prototype, "itemNo", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], FilterOrganizationDto.prototype, "organizationName", void 0);
+], FilterItemDto.prototype, "itemName", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], FilterOrganizationDto.prototype, "branchId", void 0);
+], FilterItemDto.prototype, "organizationId", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], FilterOrganizationDto.prototype, "branchNo", void 0);
+], FilterItemDto.prototype, "branchId", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], FilterOrganizationDto.prototype, "branchName", void 0);
-//# sourceMappingURL=filter-organization.dto.js.map
+    __metadata("design:type", Boolean)
+], FilterItemDto.prototype, "isActive", void 0);
+//# sourceMappingURL=filter-item.dto.js.map

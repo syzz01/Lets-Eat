@@ -15,6 +15,7 @@ const app_service_1 = require("./app.service");
 const user_module_1 = require("./user/user.module");
 const organization_module_1 = require("./organization/organization.module");
 const cats_module_1 = require("./cats/cats.module");
+const item_module_1 = require("./item/item.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -33,6 +34,7 @@ exports.AppModule = AppModule = __decorate([
             }),
             user_module_1.UserModule,
             organization_module_1.OrganizationModule,
+            item_module_1.ItemModule,
             cats_module_1.CatsModule,
         ],
         controllers: [app_controller_1.AppController],
